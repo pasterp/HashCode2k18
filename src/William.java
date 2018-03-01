@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+
+import dataModel.Parser;
 import dataModel.Simulation;
 
 public class William {
@@ -14,7 +16,7 @@ public class William {
 			
 			System.out.println(file + " résolu.");
 			parser.sim.printOutputToFile(file+".out");
-
+			
 		}
 		
 	}
