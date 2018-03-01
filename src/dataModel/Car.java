@@ -1,6 +1,6 @@
 package dataModel;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Car {
@@ -12,7 +12,8 @@ public class Car {
 		this.id = id;
 		nextAvailable = 0;
 		rides = new ArrayList<>();
-		pos = new Position(0,0);
+
+    pos = new Position(0,0);
 	}
 	
 	public boolean isAvailable(int currentStep) {

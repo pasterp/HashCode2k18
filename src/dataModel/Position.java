@@ -10,6 +10,5 @@ public class Position {
 	
 	public int distance(Position destination) {
 		return Math.abs(destination.x - x) + Math.abs(destination.y - y);
-	}
-	
+  }
 }
