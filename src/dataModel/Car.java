@@ -1,5 +1,6 @@
 package dataModel;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,10 +9,11 @@ public class Car {
 	public List<Ride> rides;
 	public Position pos;
 	
+	
 	public Car(int id) {
 		this.id = id;
 		nextAvailable = 0;
-		rides = new ArrayList<>();
+		rides = new LinkedList<>();
 
     pos = new Position(0,0);
 	}
@@ -28,9 +30,12 @@ public class Car {
 		return goal.start.distance(pos);
 	}
 	
+	public int endTimeRide(int currentStep, Ride ride) {
+		return this.distanceToRide(ride) + ride.start.distance(ride.finish);
+	}
+	
 	public boolean rideIsPossible(int currentStep, Ride goal) {
-		int total = this.distanceToRide(goal);
-		total += goal.start.distance(goal.finish);
+		int total = endTimeRide(currentStep, goal);
 		return total < goal.latest;
 	}
 	

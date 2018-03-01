@@ -5,8 +5,8 @@ public class Ride implements Comparable {
 	public int id, earliest, latest, nextAvalaible;
 	
 
-	public Ride(int id, int x1 ,int y1, int x2, int y2, int earliest, int latest) {
-		
+	public Ride(int id, int x1, int y1, int x2, int y2, int earliest, int latest) {
+
 		this.id = id;
 		start = new Position(x1, y1);
 		finish = new Position(x2, y2);
@@ -21,9 +21,15 @@ public class Ride implements Comparable {
 
 	@Override
 	public int compareTo(Object compareRide) {
-		int compareId = ((Ride) compareRide).id;
-		/* For Ascending order */
-		return this.id - compareId;
+		int compareEarliest = ((Ride) compareRide).earliest;
+		//Put earliest first or...
+		if(this.earliest == compareEarliest) {
+			//Put longest distance first
+			int compareDistance=((Ride) compareRide).getDistance();
+			return compareDistance-this.getDistance();
+		}else {
+			return this.earliest-compareEarliest;
+		}
 	}
 	
 	public boolean isAvailable(int currentStep) {
