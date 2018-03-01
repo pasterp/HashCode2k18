@@ -36,7 +36,7 @@ public class Car {
 	
 	public boolean rideIsPossible(int currentStep, Ride goal) {
 		int total = endTimeRide(currentStep, goal);
-		return total < goal.latest;
+		return total <= goal.latest;
 	}
 	
 

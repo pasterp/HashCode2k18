@@ -88,10 +88,14 @@ public class Simulation {
 		
 		int total = 0;
 		if(r.earliest == (c.distanceToRide(r)+ c.nextAvailable)) {//chope bonus
-			total += bonus;
-		}		
+			total += 0.75f*bonus;
+		}else if(r.earliest <= (c.distanceToRide(r)+ c.nextAvailable)) {
+			total += 0.25f*bonus;
+		}
 
-		return 0;
+		total += r.latest - c.endTimeRide(c.nextAvailable, r);
+		
+		return total;
   }
 
 	public Car getClosestAvailableCar(Ride ride) {
@@ -108,24 +112,20 @@ public class Simulation {
 	}
 	
 	public void resolveV1() {
+		Collections.shuffle(rides);
 		sortRidesByStartingTime();
+		
 		do {
-			for(Car c : cars) {
-				if(c.isAvailable(currentStep)) {
-					
-					for(Ride r : rides) {
-						if(c.rideIsPossible(currentStep, r)) {
-							rides.remove(r);
-							c.rides.add(r);
-							c.nextAvailable = c.endTimeRide(currentStep, r);
-							c.pos = r.finish;
-							
-							break;
-						}
-					}
-				}
+			Iterator<Ride> i = rides.iterator();
+			while(i.hasNext()) {
+				Ride r = i.next();
+				
+				Car c = getClosestAvailableCar(r);
+				c.rides.add(r);
+				i.remove();
+				c.nextAvailable = c.endTimeRide(currentStep, r);
+				c.pos = r.finish;
 			}
-			
 		currentStep++;
 		}while(currentStep <= nbMaxSteps);
 	}
