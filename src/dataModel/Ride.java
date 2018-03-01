@@ -22,8 +22,14 @@ public class Ride implements Comparable {
 	@Override
 	public int compareTo(Object compareRide) {
 		int compareEarliest = ((Ride) compareRide).earliest;
-		/* For Ascending order */
-		return this.earliest - compareEarliest;
+		//Put earliest first or...
+		if(this.earliest == compareEarliest) {
+			//Put longest distance first
+			int compareDistance=((Ride) compareRide).getDistance();
+			return compareDistance-this.getDistance();
+		}else {
+			return this.earliest-compareEarliest;
+		}
 	}
 	
 	public boolean isAvailable(int currentStep) {
