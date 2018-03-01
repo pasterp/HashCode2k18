@@ -1,6 +1,10 @@
 package dataModel;
 
 public class Ride {
-	Position start, finish;
-	int id, earliest, latest;
+	public Position start, finish;
+	public int id, earliest, latest;
+
+	public int getDistance() {
+		return Math.abs(start.x - finish.x) +Math.abs(start.y - finish.y);
+	}
 }
