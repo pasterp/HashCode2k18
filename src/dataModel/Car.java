@@ -1,6 +1,6 @@
 package dataModel;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Car {
@@ -10,7 +10,7 @@ public class Car {
 	
 	public Car(int id) {
 		this.id = id;
-		rides = new ArrayList<>();
+		rides = new LinkedList<>();
 		pos = new Position(0,0);
 	}
 }
