@@ -11,23 +11,22 @@ import dataModel.Simulation;
 
 public class RandomV1 {
 
-	public Simulation sim;
-	
 	public static void main(String[] args) throws FileNotFoundException {
-		String[] files = {"a_example.in","b_should_be_easy.in","c_no_hurry.in","d_metropolis.in","e_high_bonus.in"};		
+		String[] files = { "a_example.in", "b_should_be_easy.in", "c_no_hurry.in", "d_metropolis.in",
+				"e_high_bonus.in" };
 		Simulation sim = new Simulation();
-		
-		for(String file : files) {
-			Parser parser = new Parser(file, sim);
 
-			parser.sim.resolveV1();
-			
-			parser.sim.printOutputToFile(file+".out");
-			
+		for (String f : files) {
+			new Parser(f, sim);
+			RandomV1 algo = new RandomV1(sim);
+			algo.simulate();
+			algo.printOutputToFile("out/" + f + ".out");
 		}
-		
+
 	}
-	
+
+	public Simulation sim;
+
 	public RandomV1(Simulation sim) {
 		this.sim = sim;
 	}
@@ -40,7 +39,7 @@ public class RandomV1 {
 			sim.cars.get(carId).rides.add(r);
 
 			carId++;
-			if (carId > sim.nbVehicules) {
+			if (carId >= sim.nbVehicules) {
 				carId = 0;
 			}
 		}
