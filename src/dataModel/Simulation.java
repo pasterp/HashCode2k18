@@ -40,4 +40,26 @@ public class Simulation {
 
 		out.close();
 	}
+	
+	public void resolveV1() {
+		sortRidesByStartingTime();
+		do {
+			for(Car c : cars) {
+				if(c.isAvailable(currentStep)) {
+					
+					for(Ride r : rides) {
+						if(c.rideIsPossible(currentStep, r)) {
+							rides.remove(r);
+							c.rides.add(r);
+							c.nextAvailable = c.endTimeRide(currentStep, r);
+							
+							break;
+						}
+					}
+				}
+			}
+			
+		currentStep++;
+		}while(currentStep < nbMaxSteps);
+	}
 }
