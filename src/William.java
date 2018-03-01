@@ -1,7 +1,4 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import dataModel.Simulation;
 
 public class William {
