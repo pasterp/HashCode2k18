@@ -1,6 +1,7 @@
 package dataModel;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.Writer;
@@ -43,10 +44,12 @@ public class Simulation {
 	
 	public void resolve() {
 		Car c;
-		for(Ride r : rides) {
+		Iterator<Ride> i = rides.iterator();
+		while(i.hasNext()) {
+			Ride r = i.next();
 			c = this.getBestCarForRide(r);
 			if(c != null) {
-				rides.remove(r);
+				i.remove();
 				c.rides.add(r);
 				c.nextAvailable = c.endTimeRide(currentStep, r);
 				c.pos = r.finish;

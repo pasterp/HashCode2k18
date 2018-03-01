@@ -12,7 +12,7 @@ public class William {
 		for(String file : files) {
 			Parser parser = new Parser(file, sim);
 
-			parser.sim.resolveV1();
+			parser.sim.resolve();
 			
 			System.out.println(file + " résolu.");
 			parser.sim.printOutputToFile(file+".out");
