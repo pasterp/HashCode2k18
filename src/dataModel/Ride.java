@@ -10,8 +10,8 @@ public class Ride implements Comparable {
 
 	@Override
 	public int compareTo(Object compareRide) {
-		int compareId = ((Ride) compareRide).id;
+		int compareEarliest = ((Ride) compareRide).earliest;
 		/* For Ascending order */
-		return this.id - compareId;
+		return this.earliest - compareEarliest;
 	}
 }
