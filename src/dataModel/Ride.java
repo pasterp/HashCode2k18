@@ -4,8 +4,8 @@ public class Ride implements Comparable {
 	public Position start, finish;
 	public int id, earliest, latest;
 
-	public Ride(int id, int x1 ,int y1, int x2, int y2, int earliest, int latest) {
-		
+	public Ride(int id, int x1, int y1, int x2, int y2, int earliest, int latest) {
+
 		this.id = id;
 		start = new Position(x1, y1);
 		finish = new Position(x2, y2);
