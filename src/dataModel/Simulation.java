@@ -40,4 +40,17 @@ public class Simulation {
 
 		out.close();
 	}
+
+	public Car getClosestAvailableCar(Ride ride) {
+		int min_time=10000000;
+		Car closestAvailableCar=null;
+		for(Car car: this.cars) {
+			int time = car.pos.distance(ride.start)+car.nextAvailable-this.currentStep;
+			if(time<min_time) {
+				closestAvailableCar=car;
+				min_time=time;
+			}
+		}
+		return closestAvailableCar;
+	}
 }
