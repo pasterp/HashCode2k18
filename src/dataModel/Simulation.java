@@ -7,7 +7,7 @@ import java.io.Writer;
 import java.util.List;
 
 public class Simulation {
-	public int currentStep;
+	public int currentStep=0;
 	public int rows, columns, nbVehicules, nbRides, bonus, nbMaxSteps;
 	public List<Car> cars;
 	public List<Ride> rides;
@@ -52,5 +52,28 @@ public class Simulation {
 			}
 		}
 		return closestAvailableCar;
+	}
+	
+	public void resolveV1() {
+		sortRidesByStartingTime();
+		do {
+			for(Car c : cars) {
+				if(c.isAvailable(currentStep)) {
+					
+					for(Ride r : rides) {
+						if(c.rideIsPossible(currentStep, r)) {
+							rides.remove(r);
+							c.rides.add(r);
+							c.nextAvailable = c.endTimeRide(currentStep, r);
+							c.pos = r.finish;
+							
+							break;
+						}
+					}
+				}
+			}
+			
+		currentStep++;
+		}while(currentStep <= nbMaxSteps);
 	}
 }

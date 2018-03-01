@@ -1,16 +1,13 @@
+package dataModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import dataModel.Car;
-import dataModel.Ride;
-import dataModel.Simulation;
-
 public class Parser {
 
-	Simulation sim;
-	Scanner s;
+	public Simulation sim;
+	public Scanner s;
 
 	public Parser(String inputFile, Simulation sim) throws FileNotFoundException {
 		s = new Scanner(new File(inputFile), "UTF-8");
