@@ -7,7 +7,7 @@ import java.io.Writer;
 import java.util.List;
 
 public class Simulation {
-	public int currentStep;
+	public int currentStep=0;
 	public int rows, columns, nbVehicules, nbRides, bonus, nbMaxSteps;
 	public List<Car> cars;
 	public List<Ride> rides;
@@ -52,6 +52,7 @@ public class Simulation {
 							rides.remove(r);
 							c.rides.add(r);
 							c.nextAvailable = c.endTimeRide(currentStep, r);
+							c.pos = r.finish;
 							
 							break;
 						}
@@ -60,6 +61,6 @@ public class Simulation {
 			}
 			
 		currentStep++;
-		}while(currentStep < nbMaxSteps);
+		}while(currentStep <= nbMaxSteps);
 	}
 }

@@ -12,6 +12,7 @@ public class William {
 
 			parser.sim.resolveV1();
 			
+			System.out.println(file + " résolu.");
 			parser.sim.printOutputToFile(file+".out");
 
 		}
