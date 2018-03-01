@@ -2,7 +2,8 @@ package dataModel;
 
 public class Ride implements Comparable {
 	public Position start, finish;
-	public int id, earliest, latest;
+	public int id, earliest, latest, nextAvalaible;
+	
 
 	public Ride(int id, int x1, int y1, int x2, int y2, int earliest, int latest) {
 
@@ -23,5 +24,13 @@ public class Ride implements Comparable {
 		int compareEarliest = ((Ride) compareRide).earliest;
 		/* For Ascending order */
 		return this.earliest - compareEarliest;
+	}
+	
+	public boolean isAvailable(int currentStep) {
+		if(currentStep < this.nextAvalaible) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 }
